@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/Widget.Material3.CardView.Outlined"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="140dp"
     android:layout_margin="5dp"
     app:cardCornerRadius="5dp"
     app:cardElevation="0dp"
@@ -11,29 +11,38 @@
     app:cardBackgroundColor="@color/light_grey"
     app:contentPadding="5dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:layout_width="70dp"
-            android:layout_height="55dp"
+            android:id="@+id/folderIcon"
+            android:layout_width="73dp"
+            android:layout_height="58dp"
             android:contentDescription="@string/image"
             android:src="@drawable/folder_icon"
-            android:tint="@color/claude_dark_blue" />
+            android:tint="#959497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/folderNameFV"
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:id="@+id/folderNameFV"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:padding="10dp"
+            android:gravity="center"
+            android:paddingHorizontal="10dp"
+            android:paddingTop="10dp"
             android:text="@string/folder_name"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textColor="#A2A0A0"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/folderIcon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

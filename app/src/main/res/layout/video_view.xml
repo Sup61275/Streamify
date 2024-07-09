@@ -36,7 +36,8 @@
             android:paddingHorizontal="10dp"
             android:paddingVertical="5dp"
             android:text="@string/video_name"
-            android:textColor="@color/black"
+            android:textColor="#928F8F"
+            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/duration"
             app:layout_constraintStart_toEndOf="@id/videoImg"
             app:layout_constraintTop_toTopOf="parent" />
