@@ -8,4 +8,16 @@
         android:id="@+id/foldersView"
         android:icon="@drawable/folder_icon_selector"
         android:title="@string/all_folders" />
+    <item
+        android:id="@+id/navYoutube"
+        android:icon="@drawable/youtube_icon"
+        android:title="@string/youtube" />
+    <item
+        android:id="@+id/navUrl"
+        android:icon="@drawable/link_icon"
+        android:title="@string/play_online" />
+    <item
+        android:id="@+id/exitNav"
+        android:icon="@drawable/exit_icon"
+        android:title="@string/exit" />
 </menu>

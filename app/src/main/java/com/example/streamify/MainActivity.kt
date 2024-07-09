@@ -18,6 +18,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -72,8 +73,14 @@ class MainActivity : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.claude_background)
         binding.toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.claude_background))
 
+        sortValue = getSharedPreferences("Sorting", MODE_PRIVATE).getInt("sortValue", 0)
+
         // Set navigation bar color
         window.navigationBarColor = ContextCompat.getColor(this, R.color.claude_lighter_grey)
+
+        binding.toolbar.findViewById<AppCompatImageView>(R.id.sortIcon).setOnClickListener {
+            showSortDialog()
+        }
 
         if (requestRuntimePermission()) {
             folderList = ArrayList()
@@ -93,6 +100,45 @@ class MainActivity : AppCompatActivity() {
 
             }
             true
+        }
+    }
+    private fun showSortDialog() {
+        val menuItems = arrayOf(
+            "Latest",
+            "Oldest",
+            "Name(A to Z)",
+            "Name(Z to A)",
+            "File Size(Smallest)",
+            "File Size(Largest)"
+        )
+        var tempSortValue = sortValue
+        val dialog = MaterialAlertDialogBuilder(this)
+            .setTitle("Sort By")
+            .setPositiveButton("OK") { _, _ ->
+                if (tempSortValue != sortValue) {
+                    sortValue = tempSortValue
+                    val sortEditor = getSharedPreferences("Sorting", MODE_PRIVATE).edit()
+                    sortEditor.putInt("sortValue", sortValue)
+                    sortEditor.apply()
+
+                    // Refresh the current fragment to apply new sorting
+                    refreshCurrentFragment()
+                }
+            }
+            .setSingleChoiceItems(menuItems, sortValue) { _, pos ->
+                tempSortValue = pos
+            }
+            .create()
+        dialog.show()
+
+        // Set the OK button color to white
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.WHITE)
+    }
+    private fun refreshCurrentFragment() {
+        when (currentFragment) {
+            is VideosFragment -> setFragment(VideosFragment())
+            is FoldersFragment -> setFragment(FoldersFragment())
+            // Add other fragment types if needed
         }
     }
 
