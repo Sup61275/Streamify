@@ -46,14 +46,14 @@
             android:visibility="invisible"
             app:icon="@drawable/play_icon"
             app:iconSize="35dp"
-            app:iconTint="?attr/themeColor"
+            app:iconTint="@color/claude_very_light_grey"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.9"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.87"
-            app:strokeColor="?attr/themeColor"
+            app:strokeColor="@color/claude_dark_blue"
             app:strokeWidth="2dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

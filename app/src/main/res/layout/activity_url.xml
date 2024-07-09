@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/themeColor"
+        android:background="@color/claude_background"
         app:navigationIcon="@drawable/baseline_arrow_back_24"
         app:navigationIconTint="@color/white"
         app:titleTextColor="@color/white" />
@@ -65,7 +65,7 @@
             android:textSize="18sp"
             app:icon="@drawable/play_icon"
             app:iconGravity="start"
-            app:iconTint="?attr/themeColor" />
+            app:iconTint="@color/claude_dark_blue" />
     </LinearLayout>
 
 

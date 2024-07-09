@@ -23,7 +23,7 @@ class FoldersFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        requireContext().theme.applyStyle(MainActivity.themesList[MainActivity.themeIndex], true)
+        requireContext().theme.applyStyle(R.style.Theme_Streamify, true)
         binding = FragmentFoldersBinding.inflate(inflater, container, false)
         return binding.root
     }

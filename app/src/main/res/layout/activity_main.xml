@@ -22,7 +22,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/themeColor"
+                android:background="@color/claude_background"
                 app:navigationIconTint="@color/white"
                 app:titleTextColor="@color/white" />
             <!--            app:layout_scrollFlags="enterAlways|scroll"-->
@@ -43,11 +43,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            app:backgroundTint="@color/white"
-            app:itemIconTint="?attr/themeColor"
+            app:backgroundTint="@color/claude_lighter_grey"
+            app:itemIconTint="@drawable/bottom_nav_icon_selector"
             app:itemTextAppearanceActive="@color/black"
             app:itemTextAppearanceInactive="@android:color/darker_gray"
-            app:itemTextColor="@color/black"
+            app:itemTextColor="@drawable/bottom_nav_icon_selector"
             app:layout_anchor="@id/fragmentFL"
             app:layout_anchorGravity="bottom"
             app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
@@ -64,7 +64,7 @@
         android:fitsSystemWindows="false"
         app:drawerLayoutCornerSize="0dp"
         app:headerLayout="@layout/nav_header"
-        app:itemIconTint="?attr/themeColor"
+        app:itemIconTint="@color/claude_dark_blue"
         app:itemTextColor="@color/black"
         app:menu="@menu/nav_menu" />
 

@@ -36,7 +36,7 @@ class VideosFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        requireContext().theme.applyStyle(MainActivity.themesList[MainActivity.themeIndex], true)
+        requireContext().theme.applyStyle(R.style.Theme_Streamify, true)
         val view = inflater.inflate(R.layout.fragment_videos, container, false)
         binding = FragmentVideosBinding.bind(view)
         binding.VideoRV.setHasFixedSize(true)

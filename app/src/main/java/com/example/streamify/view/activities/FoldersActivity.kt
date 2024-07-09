@@ -9,6 +9,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.streamify.MainActivity
+import com.example.streamify.R
 import com.example.streamify.databinding.ActivityFoldersBinding
 import com.example.streamify.model.Video
 import com.example.streamify.view.adapters.VideoAdapter
@@ -26,7 +27,7 @@ class FoldersActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(MainActivity.themesList[MainActivity.themeIndex])
+        setTheme(R.style.Theme_Streamify)
 
         val binding = ActivityFoldersBinding.inflate(layoutInflater)
         setContentView(binding.root)

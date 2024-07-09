@@ -8,9 +8,18 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!--    custom colors-->
+    <!-- custom colors -->
     <color name="cool_blue">#0091EA</color>
     <color name="cool_green">#64DD17</color>
     <color name="cool_pink">#F50057</color>
     <color name="yellow">#FFD600</color>
+
+    <!-- Claude-specific colors -->
+    <color name="claude_background">#202123</color>
+    <color name="claude_lighter_grey">#2A2B32</color>
+    <color name="claude_very_light_grey">#ECECF1</color>
+    <color name="claude_dark_blue">#2B168C</color>
+    <color name="off_white">#727574</color>
+    <color name="light_grey">#313131</color>
+
 </resources>

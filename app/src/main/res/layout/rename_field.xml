@@ -12,9 +12,9 @@
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="5dp"
-        app:boxStrokeColor="?attr/themeColor"
+        app:boxStrokeColor="@color/claude_dark_blue"
         app:startIconDrawable="@drawable/rename_icon"
-        app:startIconTint="?attr/themeColor">
+        app:startIconTint="@color/claude_dark_blue">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/renameField"

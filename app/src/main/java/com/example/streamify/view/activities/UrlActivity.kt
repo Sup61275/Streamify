@@ -27,7 +27,7 @@ class UrlActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(MainActivity.themesList[MainActivity.themeIndex])
+        setTheme(R.style.Theme_Streamify)
         binding = ActivityUrlBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)

@@ -19,7 +19,7 @@
         app:iconGravity="top"
         app:iconPadding="10dp"
         app:iconSize="22dp"
-        app:iconTint="?attr/themeColor" />
+        app:iconTint="@color/claude_dark_blue" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/deleteBtn"
@@ -34,7 +34,7 @@
         app:iconGravity="top"
         app:iconPadding="10dp"
         app:iconSize="22dp"
-        app:iconTint="?attr/themeColor" />
+        app:iconTint="@color/claude_dark_blue" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/shareBtn"
@@ -49,7 +49,7 @@
         app:iconGravity="top"
         app:iconPadding="10dp"
         app:iconSize="22dp"
-        app:iconTint="?attr/themeColor" />
+        app:iconTint="@color/claude_dark_blue" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/infoBtn"
@@ -64,7 +64,7 @@
         app:iconGravity="top"
         app:iconPadding="10dp"
         app:iconSize="22dp"
-        app:iconTint="?attr/themeColor" />
+        app:iconTint="@color/claude_dark_blue" />
 
 
 </LinearLayout>

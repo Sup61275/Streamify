@@ -14,6 +14,7 @@ import android.provider.MediaStore
 import android.text.SpannableStringBuilder
 import android.text.format.DateUtils
 import android.text.format.Formatter
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -55,7 +56,8 @@ class VideoAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
-        return MyHolder(VideoViewBinding.inflate(LayoutInflater.from(context), parent, false))
+        val contextThemeWrapper = ContextThemeWrapper(parent.context, R.style.Theme_Streamify)
+        return MyHolder(VideoViewBinding.inflate(LayoutInflater.from(contextThemeWrapper), parent, false))
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -177,17 +179,6 @@ class VideoAdapter(
         notifyDataSetChanged()
     }
 
-    //for requesting android 11 or higher storage permission
-//    private fun requestPermissionR(){
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-//                if(!Environment.isExternalStorageManager()){
-//                    val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
-//                    intent.addCategory("android.intent.category.DEFAULT")
-//                    intent.data = Uri.parse("package:${context.applicationContext.packageName}")
-//                    ContextCompat.startActivity(context, intent, null)
-//                }
-//            }
-//    }
 
     private fun requestDeleteR(position: Int) {
         //list of videos to delete
