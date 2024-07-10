@@ -13,6 +13,7 @@ import com.example.streamify.view.activities.FoldersActivity
 
 class FoldersAdapter(private val context: Context, private var foldersList: ArrayList<Folder>) :
     RecyclerView.Adapter<FoldersAdapter.MyHolder>() {
+
     class MyHolder(binding: FoldersViewBinding) : RecyclerView.ViewHolder(binding.root) {
         val folderName = binding.folderNameFV
         val root = binding.root
@@ -23,15 +24,20 @@ class FoldersAdapter(private val context: Context, private var foldersList: Arra
     }
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
-        holder.folderName.text = foldersList[position].folderName
+        val folder = foldersList[position]
+        holder.folderName.text = folder.folderName
         holder.root.setOnClickListener {
             val intent = Intent(context, FoldersActivity::class.java)
-            intent.putExtra("position", position)
+            intent.putExtra("folderId", folder.id)  // Pass folder ID instead of position
+            intent.putExtra("folderName", folder.folderName)  // Pass folder name for the title
             ContextCompat.startActivity(context, intent, null)
         }
     }
 
-    override fun getItemCount(): Int {
-        return foldersList.size
+    override fun getItemCount(): Int = foldersList.size
+
+    fun updateFolderList(newList: ArrayList<Folder>) {
+        foldersList = newList
+        notifyDataSetChanged()
     }
 }

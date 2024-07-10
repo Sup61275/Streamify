@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.streamify.MainActivity
 import com.example.streamify.R
@@ -17,51 +18,72 @@ import com.example.streamify.databinding.FragmentVideosBinding
 import com.example.streamify.model.getAllVideos
 import com.example.streamify.view.activities.PlayerActivity
 import com.example.streamify.view.adapters.VideoAdapter
-
+import com.example.streamify.viewmodels.VideoViewModel
 
 
 class VideosFragment : Fragment() {
-
-    lateinit var adapter: VideoAdapter
     private lateinit var binding: FragmentVideosBinding
+    private lateinit var videoViewModel: VideoViewModel
+    lateinit var adapter: VideoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         requireContext().theme.applyStyle(R.style.Theme_Streamify, true)
-        val view = inflater.inflate(R.layout.fragment_videos, container, false)
-        binding = FragmentVideosBinding.bind(view)
-        binding.VideoRV.setHasFixedSize(true)
-        binding.VideoRV.setItemViewCacheSize(10)
-        binding.VideoRV.layoutManager = LinearLayoutManager(requireContext())
-        adapter = VideoAdapter(requireContext(), MainActivity.videoList)
-        binding.VideoRV.adapter = adapter
-        binding.totalVideos.text = "Total Videos: ${MainActivity.videoList.size}"
+        binding = FragmentVideosBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        //for refreshing layout
-        binding.root.setOnRefreshListener {
-            MainActivity.videoList = getAllVideos(requireContext())
-            adapter.updateList(MainActivity.videoList)
-            binding.totalVideos.text = "Total Videos: ${MainActivity.videoList.size}"
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-            binding.root.isRefreshing = false
+        videoViewModel = ViewModelProvider(this).get(VideoViewModel::class.java)
+        setupRecyclerView()
+        setupObservers()
+        setupListeners()
+
+        videoViewModel.loadVideos(requireContext())
+    }
+
+    private fun setupRecyclerView() {
+        binding.VideoRV.apply {
+            setHasFixedSize(true)
+            setItemViewCacheSize(10)
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = VideoAdapter(requireContext(), ArrayList())
+        }
+        adapter = binding.VideoRV.adapter as VideoAdapter
+    }
+
+    private fun setupObservers() {
+        videoViewModel.videoList.observe(viewLifecycleOwner) { videos ->
+            adapter.updateList(videos)
+            binding.totalVideos.text = "Total Videos: ${videos.size}"
         }
 
+        videoViewModel.searchList.observe(viewLifecycleOwner) { searchResults ->
+            adapter.updateList(searchResults)
+        }
+    }
+
+    private fun setupListeners() {
+        binding.root.setOnRefreshListener {
+            videoViewModel.loadVideos(requireContext())
+            binding.root.isRefreshing = false
+        }
 
         binding.nowPlayingBtn.setOnClickListener {
             val intent = Intent(requireContext(), PlayerActivity::class.java)
             intent.putExtra("class", "NowPlaying")
             startActivity(intent)
         }
-        return view
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -72,13 +94,7 @@ class VideosFragment : Fragment() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText != null) {
-                    MainActivity.searchList = ArrayList()
-                    for (video in MainActivity.videoList) {
-                        if (video.title.lowercase().contains(newText.lowercase()))
-                            MainActivity.searchList.add(video)
-                    }
-                    MainActivity.search = true
-                    adapter.updateList(searchList = MainActivity.searchList)
+                    videoViewModel.updateSearchList(newText)
                 }
                 return true
             }
@@ -86,11 +102,8 @@ class VideosFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
         super.onResume()
         if (PlayerActivity.position != -1) binding.nowPlayingBtn.visibility = View.VISIBLE
-//        if(MainActivity.adapterChanged) adapter.notifyDataSetChanged()
-//        MainActivity.adapterChanged = false
     }
 }

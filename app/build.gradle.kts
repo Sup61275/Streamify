@@ -68,4 +68,5 @@ dependencies {
 
     //custom chrome tabs for integrating youtube
     implementation(libs.androidx.browser)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
 }

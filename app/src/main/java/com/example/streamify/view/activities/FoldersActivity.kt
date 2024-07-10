@@ -19,26 +19,28 @@ import java.io.File
 class FoldersActivity : AppCompatActivity() {
 
     private lateinit var adapter: VideoAdapter
-
+    private lateinit var binding: ActivityFoldersBinding
     companion object {
         lateinit var currentFolderVideos: ArrayList<Video>
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_Streamify)
 
-        val binding = ActivityFoldersBinding.inflate(layoutInflater)
+        binding = ActivityFoldersBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val position = intent.getIntExtra("position", 0)
+
+        val folderId = intent.getStringExtra("folderId") ?: return
+        val folderName = intent.getStringExtra("folderName") ?: "Unknown Folder"
+
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = MainActivity.folderList[position].folderName
-
+        supportActionBar?.title = folderName
 
         binding.toolbar.setNavigationOnClickListener { finish() }
-        currentFolderVideos = getAllVideos(MainActivity.folderList[position].id)
+
+        currentFolderVideos = getAllVideos(folderId)
 
         binding.videoRVFA.setHasFixedSize(true)
         binding.videoRVFA.setItemViewCacheSize(10)
@@ -46,8 +48,8 @@ class FoldersActivity : AppCompatActivity() {
         adapter = VideoAdapter(this@FoldersActivity, currentFolderVideos, isFolder = true)
         binding.videoRVFA.adapter = adapter
         binding.totalVideosFA.text = "Total Videos: ${currentFolderVideos.size}"
-
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         finish()

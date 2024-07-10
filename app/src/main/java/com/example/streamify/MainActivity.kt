@@ -26,7 +26,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.streamify.databinding.ActivityMainBinding
-import com.example.streamify.databinding.ThemeViewBinding
+
 import com.example.streamify.model.Folder
 import com.example.streamify.model.Video
 import com.example.streamify.model.checkForInternet

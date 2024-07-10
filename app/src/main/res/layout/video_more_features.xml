@@ -14,12 +14,12 @@
         android:background="?attr/selectableItemBackground"
         android:text="@string/rename"
         android:textAllCaps="false"
-        android:textColor="@color/black"
+        android:textColor="#7B7B7C"
         app:icon="@drawable/rename_icon"
         app:iconGravity="top"
         app:iconPadding="10dp"
         app:iconSize="22dp"
-        app:iconTint="@color/claude_dark_blue" />
+        app:iconTint="#FB8C00" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/deleteBtn"
@@ -29,12 +29,12 @@
         android:background="?attr/selectableItemBackground"
         android:text="@string/delete"
         android:textAllCaps="false"
-        android:textColor="@color/black"
+        android:textColor="#7B7B7C"
         app:icon="@drawable/delete_icon"
         app:iconGravity="top"
         app:iconPadding="10dp"
         app:iconSize="22dp"
-        app:iconTint="@color/claude_dark_blue" />
+        app:iconTint="#FB8C00" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/shareBtn"
@@ -44,12 +44,12 @@
         android:background="?attr/selectableItemBackground"
         android:text="@string/share"
         android:textAllCaps="false"
-        android:textColor="@color/black"
+        android:textColor="#7B7B7C"
         app:icon="@drawable/share_icon"
         app:iconGravity="top"
         app:iconPadding="10dp"
         app:iconSize="22dp"
-        app:iconTint="@color/claude_dark_blue" />
+        app:iconTint="#FB8C00" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/infoBtn"
@@ -59,12 +59,12 @@
         android:background="?attr/selectableItemBackground"
         android:text="@string/info"
         android:textAllCaps="false"
-        android:textColor="@color/black"
+        android:textColor="#7B7B7C"
         app:icon="@drawable/about_icon"
         app:iconGravity="top"
         app:iconPadding="10dp"
         app:iconSize="22dp"
-        app:iconTint="@color/claude_dark_blue" />
+        app:iconTint="#FB8C00" />
 
 
 </LinearLayout>

@@ -22,5 +22,6 @@
     <color name="off_white">#727574</color>
     <color name="light_grey">#313131</color>
     <color name="dark_grey">#FF333333</color>
+    <color name="perfect_grey">#878789</color>
 
 </resources>

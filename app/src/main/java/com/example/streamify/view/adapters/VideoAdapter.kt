@@ -55,6 +55,7 @@ class VideoAdapter(
         val root = binding.root
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         val contextThemeWrapper = ContextThemeWrapper(parent.context, R.style.Theme_Streamify)
         return MyHolder(VideoViewBinding.inflate(LayoutInflater.from(contextThemeWrapper), parent, false))
@@ -347,10 +348,10 @@ class VideoAdapter(
         bindingRF.renameField.text = SpannableStringBuilder(videoList[newPosition].title)
         dialogRF.show()
         dialogRF.getButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE).setBackgroundColor(
-            MaterialColors.getColor(context, R.attr.themeColor, Color.BLACK)
+            MaterialColors.getColor(context, R.attr.themeColor,Color.LTGRAY)
         )
         dialogRF.getButton(androidx.appcompat.app.AlertDialog.BUTTON_NEGATIVE).setBackgroundColor(
-            MaterialColors.getColor(context, R.attr.themeColor, Color.BLACK)
+            MaterialColors.getColor(context, R.attr.themeColor, Color.LTGRAY)
         )
     }
 
