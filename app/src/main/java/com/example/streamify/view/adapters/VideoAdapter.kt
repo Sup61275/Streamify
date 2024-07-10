@@ -19,6 +19,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.text.bold
+import androidx.core.text.color
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -135,21 +136,22 @@ class VideoAdapter(
                     }
                     .create()
                 dialogIF.show()
-                val infoText = SpannableStringBuilder().bold { append("DETAILS\n\nName: ") }
-                    .append(videoList[position].title)
-                    .bold { append("\n\nDuration: ") }
-                    .append(DateUtils.formatElapsedTime(videoList[position].duration / 1000))
-                    .bold { append("\n\nFile Size: ") }.append(
-                        Formatter.formatShortFileSize(
-                            context,
-                            videoList[position].size.toLong()
-                        )
-                    )
+                val infoText = SpannableStringBuilder()
+                    .color(Color.LTGRAY) {
+                        bold { append("DETAILS\n\nName: ") }
+                        append(videoList[position].title)
+                        bold { append("\n\nDuration: ") }
+                        append(DateUtils.formatElapsedTime(videoList[position].duration / 1000))
+                        bold { append("\n\nFile Size: ") }
+                        append(Formatter.formatShortFileSize(context, videoList[position].size.toLong()))
+                        bold { append("\n\nLocation: ") }
+                        append(videoList[position].path)
+                    }
                     .bold { append("\n\nLocation: ") }.append(videoList[position].path)
 
                 bindingIF.detailTV.text = infoText
                 dialogIF.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(
-                    MaterialColors.getColor(context, R.attr.themeColor, Color.RED)
+                    MaterialColors.getColor(context, R.attr.themeColor, Color.LTGRAY)
                 )
             }
 
