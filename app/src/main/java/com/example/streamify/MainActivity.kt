@@ -31,7 +31,6 @@ import com.example.streamify.model.Folder
 import com.example.streamify.model.Video
 import com.example.streamify.model.checkForInternet
 import com.example.streamify.model.getAllVideos
-import com.example.streamify.view.activities.AboutActivity
 import com.example.streamify.view.activities.UrlActivity
 import com.example.streamify.view.fragments.FoldersFragment
 import com.example.streamify.view.fragments.VideosFragment
@@ -97,10 +96,20 @@ class MainActivity : AppCompatActivity() {
                 R.id.foldersView -> setFragment(FoldersFragment())
                 R.id.navYoutube -> openYoutube()
                 R.id.navUrl -> startActivity(Intent(this, UrlActivity::class.java))
-
+                R.id.exitNav -> showExitDialog()
             }
             true
         }
+    }
+    private fun showExitDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("Exit Application")
+            .setMessage("Are you sure you want to exit?")
+            .setPositiveButton("Yes") { _, _ ->
+                finish()
+            }
+            .setNegativeButton("No", null)
+            .show()
     }
     private fun showSortDialog() {
         val menuItems = arrayOf(
@@ -164,7 +173,7 @@ class MainActivity : AppCompatActivity() {
         AlertDialog.Builder(this)
             .setItems(options) { _, which ->
                 when (which) {
-                    0 -> startActivity(Intent(this, AboutActivity::class.java))
+
                     1 -> finish()
                 }
             }
